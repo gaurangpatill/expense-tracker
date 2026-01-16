@@ -21,10 +21,15 @@ export default defineConfig({
       DATABASE_URL: testDb,
     },
     pool: "threads",
-    minThreads: 1,
-    maxThreads: 1,
     fileParallelism: false,
     maxConcurrency: 1,
+    // @ts-expect-error vitest poolOptions is not in InlineConfig typing
+    poolOptions: {
+      threads: {
+        minThreads: 1,
+        maxThreads: 1,
+      },
+    },
     sequence: {
       concurrent: false,
     },

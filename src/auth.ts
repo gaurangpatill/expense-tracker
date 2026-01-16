@@ -7,7 +7,7 @@ import bcrypt from "bcrypt";
 
 import { prisma } from "@/db/prisma";
 
-const providers = [
+const providers: NextAuthOptions["providers"] = [
   Credentials({
     name: "Credentials",
     credentials: {
@@ -62,7 +62,7 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
   );
 }
 
-export const authOptions: NextAuthOptions = {
+export const authOptions = {
   adapter: PrismaAdapter(prisma),
   session: {
     strategy: "jwt",
@@ -86,7 +86,7 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-};
+} satisfies NextAuthOptions;
 
 export function auth() {
   return getServerSession(authOptions);

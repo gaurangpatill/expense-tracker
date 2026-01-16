@@ -24,6 +24,17 @@ export default async function DashboardPage() {
     getPreferences(userId),
   ]);
   const layout = (preferences.dashboardLayout as typeof defaultDashboardLayout) ?? defaultDashboardLayout;
+  const dashboardData = {
+    ...data,
+    recentTransactions: data.recentTransactions.map((transaction) => ({
+      ...transaction,
+      date: transaction.date.toISOString(),
+      category: {
+        name: transaction.category.name,
+        icon: transaction.category.icon,
+      },
+    })),
+  };
 
   return (
     <div className="space-y-6">
@@ -31,7 +42,7 @@ export default async function DashboardPage() {
         <h1 className="text-2xl font-semibold">Dashboard</h1>
         <p className="text-sm text-neutral-500">Monthly performance snapshot.</p>
       </div>
-      <DashboardOverview data={data} currency={preferences.currency} layout={layout} />
+      <DashboardOverview data={dashboardData} currency={preferences.currency} layout={layout} />
     </div>
   );
 }
