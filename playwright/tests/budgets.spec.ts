@@ -39,6 +39,10 @@ test("budget overspent state", async ({ page }) => {
   await page.getByRole("button", { name: "Create transaction" }).click();
   await createResponse;
 
+  const progressResponse = page.waitForResponse(
+    (response) => response.url().includes("/api/budgets/progress") && response.ok()
+  );
   await page.goto("/budgets");
-  await expect(page.getByText("Over budget")).toBeVisible({ timeout: 10_000 });
+  await progressResponse;
+  await expect(page.getByText("Over budget", { exact: true })).toBeVisible({ timeout: 10_000 });
 });
