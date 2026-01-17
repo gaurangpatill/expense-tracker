@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
@@ -24,6 +25,7 @@ const schema = z
 type FormValues = z.infer<typeof schema>;
 
 export default function SignupPage() {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -57,7 +59,7 @@ export default function SignupPage() {
       return;
     }
 
-    window.location.href = result?.url ?? "/dashboard";
+    router.replace(result?.url ?? "/dashboard");
   });
 
   return (

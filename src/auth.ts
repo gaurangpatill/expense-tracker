@@ -14,7 +14,7 @@ const providers: NextAuthOptions["providers"] = [
       email: { label: "Email", type: "email" },
       password: { label: "Password", type: "password" },
     },
-    async authorize(credentials, request) {
+    async authorize(credentials) {
       const email = credentials?.email?.toLowerCase().trim();
       if (!email || !credentials?.password) {
         return null;

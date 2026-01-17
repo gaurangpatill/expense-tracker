@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 import { auth } from "@/auth";
@@ -41,10 +42,12 @@ export default async function TransactionDetailPage({ params }: { params: { id: 
       {transaction.attachment ? (
         <div className="rounded-2xl border border-neutral-200 bg-white p-6 shadow-sm">
           <h2 className="text-lg font-semibold">Receipt</h2>
-          <img
+          <Image
             src={transaction.attachment.url}
             alt="Receipt attachment"
-            className="mt-4 max-h-80 rounded-xl border border-neutral-200 object-contain"
+            width={900}
+            height={600}
+            className="mt-4 max-h-80 w-full rounded-xl border border-neutral-200 object-contain"
           />
         </div>
       ) : null}

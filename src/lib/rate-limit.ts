@@ -4,6 +4,7 @@ type RateLimitEntry = {
 };
 
 const store = new Map<string, RateLimitEntry>();
+void store;
 
 export type RateLimitResult = {
   allowed: boolean;
