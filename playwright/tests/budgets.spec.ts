@@ -20,12 +20,26 @@ test("budget overspent state", async ({ page }) => {
   await page.getByRole("button", { name: "Choose icon" }).click();
   await page.getByLabel("Search icons").fill("utensils");
   await page.getByRole("button", { name: /select utensils icon/i }).click();
+  const createCategoryResponse = page.waitForResponse(
+    (response) =>
+      response.url().includes("/api/categories") &&
+      response.request().method() === "POST" &&
+      response.ok()
+  );
   await page.getByRole("button", { name: "Create category" }).click();
+  await createCategoryResponse;
 
   await page.goto("/budgets");
   await page.getByLabel("Category").selectOption({ label: "Food" });
   await page.getByLabel("Limit").fill("50.00");
+  const createBudgetResponse = page.waitForResponse(
+    (response) =>
+      response.url().includes("/api/budgets") &&
+      response.request().method() === "POST" &&
+      response.ok()
+  );
   await page.getByRole("button", { name: "Create budget" }).click();
+  await createBudgetResponse;
 
   await page.goto("/transactions/new");
   await page.getByLabel("Amount").fill("75.00");
