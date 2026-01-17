@@ -30,9 +30,15 @@ test("budget overspent state", async ({ page }) => {
   await page.goto("/transactions/new");
   await page.getByLabel("Amount").fill("75.00");
   await page.getByLabel("Category").selectOption({ label: "Food" });
+  const createResponse = page.waitForResponse(
+    (response) =>
+      response.url().includes("/api/transactions") &&
+      response.request().method() === "POST" &&
+      response.ok()
+  );
   await page.getByRole("button", { name: "Create transaction" }).click();
+  await createResponse;
 
   await page.goto("/budgets");
-  await page.waitForLoadState("networkidle");
-  await expect(page.getByText("Over budget")).toBeVisible();
+  await expect(page.getByText("Over budget")).toBeVisible({ timeout: 10_000 });
 });
