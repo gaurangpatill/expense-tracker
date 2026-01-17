@@ -6,13 +6,18 @@ import { getTransaction } from "@/server/services/transactions";
 import { TransactionForm } from "@/components/transactions/transaction-form";
 import { TransactionDeleteButton } from "@/components/transactions/transaction-delete-button";
 
-export default async function TransactionDetailPage({ params }: { params: { id: string } }) {
+export default async function TransactionDetailPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
   const session = await auth();
   if (!session?.user?.id) {
     notFound();
   }
 
-  const transaction = await getTransaction(session.user.id, params.id);
+  const transaction = await getTransaction(session.user.id, id);
   if (!transaction) {
     notFound();
   }

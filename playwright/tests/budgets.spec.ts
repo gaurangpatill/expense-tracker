@@ -33,5 +33,6 @@ test("budget overspent state", async ({ page }) => {
   await page.getByRole("button", { name: "Create transaction" }).click();
 
   await page.goto("/budgets");
+  await page.waitForLoadState("networkidle");
   await expect(page.getByText("Over budget")).toBeVisible();
 });

@@ -29,10 +29,13 @@ test("change currency and toggle widgets", async ({ page }) => {
 
   await page.goto("/settings");
   await page.getByLabel("Currency").selectOption("EUR");
+  await expect(page.getByText("Currency updated")).toBeVisible();
 
   await page.getByTestId("toggle-widget-showTopMerchants").click();
+  await expect(page.getByText("Dashboard updated")).toBeVisible();
 
   await page.goto("/dashboard");
+  await page.waitForLoadState("networkidle");
   await expect(page.getByTestId("card-income")).toContainText("€");
   await expect(page.locator("[data-testid='widget-top-merchants']")).toHaveCount(0);
 

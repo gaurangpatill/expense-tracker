@@ -30,7 +30,7 @@ test("upload receipt attachment", async ({ page }) => {
 
   const filePath = path.join(process.cwd(), "playwright/fixtures/receipt.png");
   await page.setInputFiles("input[type=file]", filePath);
-  await expect(page.getByText("Receipt attached")).toBeVisible();
+  await expect(page.locator("label", { hasText: "Receipt attachment" }).getByText("Receipt attached")).toBeVisible();
 
   await page.getByRole("button", { name: "Create transaction" }).click();
 

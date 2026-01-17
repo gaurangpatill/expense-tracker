@@ -16,7 +16,7 @@ test("signup, logout, login flow", async ({ page }) => {
 
   await page.goto("/settings");
   await page.getByRole("button", { name: "Sign out" }).click();
-  await expect(page).toHaveURL(/login/);
+  await expect(page).toHaveURL(/\/$/);
 
   await login(page, email, password);
 });

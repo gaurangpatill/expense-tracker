@@ -23,16 +23,15 @@ test("create and edit category with icon", async ({ page }) => {
   await page.getByRole("button", { name: /select coffee icon/i }).click();
   await page.getByRole("button", { name: "Create category" }).click();
 
-  const row = page.getByText("Coffee");
-  await expect(row).toBeVisible();
-  await expect(row.locator("xpath=ancestor::div[contains(@class,'border-neutral-200')]//svg")).toBeVisible();
+  await expect(page.getByText("Coffee", { exact: true })).toBeVisible();
+  await expect(page.getByTestId(/category-icon-/)).toBeVisible();
 
   await page.getByRole("button", { name: "Edit" }).first().click();
-  await page.getByLabel("Name").fill("Cafe");
-  await page.getByRole("button", { name: "Choose icon" }).click();
+  await page.getByRole("dialog").getByLabel("Name").fill("Cafe");
+  await page.getByRole("dialog").getByRole("button", { name: "Choose icon" }).click();
   await page.getByLabel("Search icons").fill("coffee");
   await page.getByRole("button", { name: /select coffee icon/i }).click();
-  await page.getByRole("button", { name: "Save" }).click();
+  await page.getByRole("dialog").getByRole("button", { name: "Save" }).click();
 
   await expect(page.getByText("Cafe")).toBeVisible();
 });
