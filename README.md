@@ -1,4 +1,4 @@
-# ExpenseFlow — Expense Tracker
+# Expense Tracker
 
 A production-ready expense tracker with secure authentication, budgets, recurring transactions, receipt uploads, and analytics. Built with Next.js App Router, TypeScript, Prisma, and PostgreSQL with a strong focus on data integrity, test reliability, and real-world engineering practices.
 
