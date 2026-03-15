@@ -200,7 +200,7 @@ export function TransactionsList() {
               <Link
                 key={transaction.id}
                 href={`/transactions/${transaction.id}`}
-                className="flex items-center justify-between rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3 transition hover:border-neutral-300"
+                className="glass-pill flex items-center justify-between rounded-2xl px-4 py-3 transition duration-300 ease-out hover:-translate-y-0.5"
               >
                 <div className="flex items-center gap-3">
                   {(() => {

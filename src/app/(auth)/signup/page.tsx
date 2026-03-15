@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
@@ -26,6 +27,8 @@ type FormValues = z.infer<typeof schema>;
 
 export default function SignupPage() {
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -63,7 +66,7 @@ export default function SignupPage() {
   });
 
   return (
-    <div className="w-full rounded-3xl border border-neutral-200 bg-white p-8 shadow-xl">
+    <div className="glass-card w-full rounded-3xl p-8">
       <div className="space-y-2">
         <h1 className="text-2xl font-semibold">Create your workspace</h1>
         <p className="text-sm text-neutral-500">Start tracking with a fresh set of defaults.</p>
@@ -78,16 +81,36 @@ export default function SignupPage() {
         />
         <Input
           label="Password"
-          type="password"
+          type={showPassword ? "text" : "password"}
           placeholder="Create a secure password"
           error={errors.password?.message}
+          rightElement={
+            <button
+              type="button"
+              className="text-xs font-medium text-neutral-600 hover:text-neutral-900"
+              onClick={() => setShowPassword((prev) => !prev)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          }
           {...register("password")}
         />
         <Input
           label="Confirm password"
-          type="password"
+          type={showConfirmPassword ? "text" : "password"}
           placeholder="Repeat password"
           error={errors.confirmPassword?.message}
+          rightElement={
+            <button
+              type="button"
+              className="text-xs font-medium text-neutral-600 hover:text-neutral-900"
+              onClick={() => setShowConfirmPassword((prev) => !prev)}
+              aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+            >
+              {showConfirmPassword ? "Hide" : "Show"}
+            </button>
+          }
           {...register("confirmPassword")}
         />
         <Button type="submit" className="w-full" disabled={isSubmitting}>

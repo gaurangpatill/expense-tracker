@@ -13,7 +13,7 @@ export function Select({ className, label, error, children, ...props }: SelectPr
       {label ? <span className="font-medium text-neutral-700">{label}</span> : null}
       <select
         className={cn(
-          "w-full rounded-lg border border-neutral-200 bg-white px-3 py-2 text-sm text-neutral-900 shadow-sm focus:border-neutral-900 focus:outline-none focus:ring-1 focus:ring-neutral-900",
+          "glass-input ring-focus w-full rounded-xl px-3 py-2 text-sm text-neutral-900 transition duration-300 ease-out focus:border-transparent",
           error ? "border-red-500 focus:border-red-500 focus:ring-red-500" : "",
           className
         )}

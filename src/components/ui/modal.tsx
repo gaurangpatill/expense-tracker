@@ -22,8 +22,9 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
   }
 
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-      <div className={cn("w-full max-w-lg rounded-2xl bg-white p-6 shadow-xl")}
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 p-4 backdrop-blur-sm">
+      <div
+        className={cn("glass-modal reveal-up w-full max-w-lg rounded-3xl p-6")}
         role="dialog"
         aria-modal="true"
       >
@@ -32,7 +33,7 @@ export function Modal({ open, onClose, title, children }: ModalProps) {
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full px-2 py-1 text-sm text-neutral-500 hover:bg-neutral-100"
+            className="rounded-full px-2 py-1 text-sm text-neutral-500 transition hover:bg-white/60"
             aria-label="Close modal"
           >
             ✕

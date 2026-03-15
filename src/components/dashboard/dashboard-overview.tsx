@@ -104,7 +104,7 @@ export function DashboardOverview({
             <p className="text-sm text-neutral-500">No merchant data yet.</p>
           ) : (
             data.topMerchants.map((merchant) => (
-              <div key={merchant.name} className="flex items-center justify-between rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3">
+              <div key={merchant.name} className="glass-pill flex items-center justify-between rounded-2xl px-4 py-3">
                 <span className="text-sm font-medium">{merchant.name}</span>
                 <span className="text-sm font-semibold text-neutral-900">{format(merchant.amountCents)}</span>
               </div>
@@ -124,7 +124,7 @@ export function DashboardOverview({
               .sort((a, b) => b.percent - a.percent)
               .slice(0, 5)
               .map((budget) => (
-                <div key={budget.id} className="rounded-xl border border-neutral-200 bg-neutral-50 p-4">
+                <div key={budget.id} className="glass-pill rounded-2xl p-4">
                   <div className="flex items-center justify-between">
                     <div>
                       <p className="text-sm font-semibold">{budget.category.name}</p>
@@ -155,7 +155,7 @@ export function DashboardOverview({
             <p className="text-sm text-neutral-500">No recent transactions.</p>
           ) : (
             data.recentTransactions.map((transaction) => (
-              <div key={transaction.id} className="flex items-center justify-between rounded-xl border border-neutral-200 bg-neutral-50 px-4 py-3">
+              <div key={transaction.id} className="glass-pill flex items-center justify-between rounded-2xl px-4 py-3">
                 <div className="flex items-center gap-3">
                   {(() => {
                     const Icon = getCategoryIcon(transaction.category.icon);
@@ -184,7 +184,7 @@ export function DashboardOverview({
 
   return (
     <div className="space-y-6">
-      <div className="grid gap-4 md:grid-cols-3">
+      <div className="grid gap-4 md:grid-cols-3 stagger">
         {layout.cards.showIncome ? (
           <Card data-testid="card-income">
             <p className="text-xs uppercase tracking-[0.2em] text-neutral-500">Income</p>
@@ -207,7 +207,7 @@ export function DashboardOverview({
         ) : null}
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-2">{widgetList}</div>
+      <div className="grid gap-6 lg:grid-cols-2 stagger">{widgetList}</div>
     </div>
   );
 }

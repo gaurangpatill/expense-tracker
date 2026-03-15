@@ -11,17 +11,17 @@ const navItems = [
 
 export function Sidebar() {
   return (
-    <aside className="hidden h-screen w-64 flex-col border-r border-neutral-200 bg-white p-6 md:flex">
-      <div className="mb-8">
-        <p className="text-xl font-semibold">ExpenseFlow</p>
-        <p className="text-xs text-neutral-500">Smart money control</p>
+    <aside className="glass-surface hidden h-screen w-72 flex-col p-6 shadow-xl shadow-slate-900/10 md:flex">
+      <div className="mb-10">
+        <p className="float-slow text-2xl font-semibold tracking-[0.18em] text-slate-900">ExpenseFlow</p>
+        <p className="text-xs text-slate-500">Smart money control</p>
       </div>
       <nav className="flex flex-col gap-2 text-sm">
         {navItems.map((item) => (
           <Link
             key={item.href}
             href={item.href}
-            className="rounded-lg px-3 py-2 font-medium text-neutral-700 transition hover:bg-neutral-100"
+            className="glass-pill rounded-2xl px-4 py-3 font-semibold text-slate-700 transition duration-300 ease-out hover:-translate-y-0.5 hover:text-slate-900"
           >
             {item.label}
           </Link>

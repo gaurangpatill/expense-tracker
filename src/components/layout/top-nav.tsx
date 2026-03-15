@@ -11,14 +11,14 @@ const navItems = [
 
 export function TopNav() {
   return (
-    <nav className="flex w-full items-center gap-2 overflow-x-auto border-b border-neutral-200 bg-white px-4 py-3 md:hidden">
-      <span className="text-sm font-semibold">ExpenseFlow</span>
+    <nav className="glass-nav flex w-full items-center gap-3 overflow-x-auto px-4 py-3 shadow-lg shadow-slate-900/5 md:hidden">
+      <span className="text-sm font-semibold tracking-[0.12em] text-slate-900">ExpenseFlow</span>
       <div className="flex gap-2 text-xs">
         {navItems.map((item) => (
           <Link
             key={item.href}
             href={item.href}
-            className="rounded-full border border-neutral-200 px-3 py-1 text-neutral-600"
+            className="glass-pill rounded-full px-3 py-1 font-semibold text-slate-700 transition duration-300 ease-out hover:-translate-y-0.5 hover:text-slate-900"
           >
             {item.label}
           </Link>

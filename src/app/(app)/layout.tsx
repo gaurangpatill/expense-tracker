@@ -18,11 +18,13 @@ export default async function AppLayout({ children }: { children: ReactNode }) {
   }
 
   return (
-    <div className="min-h-screen bg-neutral-50">
+    <div className="app-shell">
       <TopNav />
       <div className="flex">
         <Sidebar />
-        <main className="min-h-screen flex-1 px-6 py-8">{children}</main>
+        <main className="min-h-screen flex-1 px-6 py-8 md:px-10 md:py-10">
+          <div className="reveal-up">{children}</div>
+        </main>
       </div>
     </div>
   );
